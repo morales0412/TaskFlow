@@ -12,7 +12,7 @@ class Workspace(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["name", "owner"], name="unique_workspace_name_per_user"
+                fields=["owner", "name"], name="unique_workspace_name_per_user"
             )
         ]
 
