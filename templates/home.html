@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to TaskFlow</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}"> Home </a></li>
+                <li><a href="{% url 'login' %}"> Login </a></li>
+                <li><a href="{% url 'register' %}"> Register </a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2> home page </h2>
+        <p> template home page </p>
+</body>
+</html>
