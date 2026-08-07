@@ -2,15 +2,17 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView, LogoutView
 from .models import User
-from .forms import UserCreationForm, LoginForm
+from .forms import RegisterForm, LoginForm
+from django.contrib.auth import login
 # Create your views here.
 
 
 class RegisterView(CreateView):
-    template_name = "accounts/register.html"
-    form_class = UserCreationForm
+    template_name = "registration/register.html"
+    form_class = RegisterForm
 
     def form_valid(self, form):
+        print("Entro al form_valid")
         user = form.save()
         login(self.request, user)
         return redirect("home")
@@ -18,7 +20,7 @@ class RegisterView(CreateView):
 
 class UserLoginView(LoginView):
     authentication_form = LoginForm
-    template_name = "accounts/login.html"
+    template_name = "registration/login.html"
 
 
 class UserLogoutView(LogoutView):
