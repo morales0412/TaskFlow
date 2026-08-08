@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class WorkspaceListView(LoginRequiredMixin, ListView):
     model = Workspace
-    template_name = "workspaces/workspace_list.html"
+    template_name = "workspaces/listar_workspaces.html"
     context_object_name = "workspaces"
 
     def get_queryset(self):
@@ -25,14 +25,24 @@ class WorkspaceCreateView(LoginRequiredMixin, CreateView):
     form_class = WorkspaceForm
     success_url = reverse_lazy("listar_workspaces")
 
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
 
 class WorkspaceUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "workspaces/editar_workspace.html"
     form_class = WorkspaceForm
     success_url = reverse_lazy("listar_workspaces")
 
+    def get_queryset(self):
+        return Workspace.objects.filter(owner=self.request.user)
+
 
 class WorkspaceDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "workspaces/eliminar_workspace.html"
     form_class = WorkspaceForm
     success_url = reverse_lazy("listar_workspaces")
+
+    def get_queryset(self):
+        return Workspace.objects.filter(owner=self.request.user)

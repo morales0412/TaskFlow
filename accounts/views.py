@@ -15,7 +15,7 @@ class RegisterView(CreateView):
         print("Entro al form_valid")
         user = form.save()
         login(self.request, user)
-        return redirect("home")
+        return redirect("listar_workspaces")
 
 
 class UserLoginView(LoginView):

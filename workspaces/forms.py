@@ -18,7 +18,7 @@ class WorkspaceForm(ModelForm):
             }
         }
         widgets = {
-            "name": forms.TextInput(placeholder="workspace name"),
+            "name": forms.TextInput(attrs={"placeholder": "workspace name"}),
             "description": forms.Textarea(
                 attrs={"placeholder": "workspace description"}
             ),
