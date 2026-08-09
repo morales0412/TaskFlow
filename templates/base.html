@@ -11,8 +11,8 @@
         <h1> TaskFlow</h1>
         <nav>
             <a href="{% url 'listar_workspaces' %}">Workspaces</a>
-            <a href="{% url 'listar_proyectos' %}">Proyectos</a>
-            <a href="{% url 'listar_tareas' %}"> Tareas </a>
+            {% comment %} <a href="{% url 'listar_proyectos' %}">Proyectos</a>
+            <a href="{% url 'listar_tareas' %}"> Tareas </a> {% endcomment %}
         </nav>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}

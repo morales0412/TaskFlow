@@ -27,6 +27,13 @@ class WorkspaceCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
+
+        if Workspace.objects.filter(
+            owner=self.request.user, name=form.instance.name
+        ).exists():
+            form.add_error("name", "Ya tienes un workspace con este nombre.")
+            return self.form_invalid(form)
+
         return super().form_valid(form)
 
 
@@ -40,8 +47,8 @@ class WorkspaceUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class WorkspaceDeleteView(LoginRequiredMixin, DeleteView):
+    model = Workspace
     template_name = "workspaces/eliminar_workspace.html"
-    form_class = WorkspaceForm
     success_url = reverse_lazy("listar_workspaces")
 
     def get_queryset(self):
