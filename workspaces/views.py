@@ -43,7 +43,8 @@ class WorkspaceUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("listar_workspaces")
 
     def get_queryset(self):
-        return Workspace.objects.filter(owner=self.request.user)
+        queryset = super().get_queryset()
+        return queryset.filter(owner=self.request.user)
 
 
 class WorkspaceDeleteView(LoginRequiredMixin, DeleteView):
@@ -52,4 +53,5 @@ class WorkspaceDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("listar_workspaces")
 
     def get_queryset(self):
-        return Workspace.objects.filter(owner=self.request.user)
+        queryset = super().get_queryset()
+        return queryset.filter(owner=self.request.user)
