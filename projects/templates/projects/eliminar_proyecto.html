@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title%} Eliminar proyecto {% endblock %}
+
+{% block content %}
+
+    <h1> Eliminar Proyecto {{ proyecto.name }} </h1>
+    <form method="POST">
+        {% csrf_token%}
+        <p>¿Está seguro de que desea eliminar este proyecto?</p>
+        <button type="submit"> Eliminar </button>
+    </form>
+    <a href="{% url 'listar_proyectos' workspace_id=proyecto.workspace_id %}"> Cancelar </a>
+{% endblock %}

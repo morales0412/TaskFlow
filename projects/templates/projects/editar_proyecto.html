@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %} Editar proyecto {% endblock %}
+
+{% block content %}
+    <h1> Editar Proyecto {{ proyecto.name }} </h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit"> Guardar cambios </button>
+    </form>
+    <a href="{% url 'listar_proyectos' workspace_id=proyecto.workspace_id %}"> Cancelar </a>
+{% endblock %}

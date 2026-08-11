@@ -38,6 +38,7 @@ class WorkspaceCreateView(LoginRequiredMixin, CreateView):
 
 
 class WorkspaceUpdateView(LoginRequiredMixin, UpdateView):
+    model = Workspace
     template_name = "workspaces/editar_workspace.html"
     form_class = WorkspaceForm
     success_url = reverse_lazy("listar_workspaces")

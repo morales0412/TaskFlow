@@ -11,7 +11,7 @@ from workspaces.models import Workspace
 class ProjectListView(LoginRequiredMixin, ListView):
     model = Project
     template_name = "projects/listar_proyectos.html"
-    context_object_name = "projects"
+    context_object_name = "proyectos"
 
     def get_queryset(self):
         # self.kwargs["nombre_variable"] contiene los parametros que se le pasa por la URL
@@ -58,16 +58,25 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
             return self.form_invalid(form)
         return super().form_valid(form)
 
-    def succes_url(self):
+    def get_success_url(self):
         # Se usa aca el success ya que se puede acceder a los kwargs de la URL y se puede redirigir a la lista de proyectos del workspace correspondiente
         return reverse_lazy(
             "listar_proyectos", kwargs={"workspace_id": self.kwargs["workspace_id"]}
         )
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["workspace"] = get_object_or_404(
+            Workspace, id=self.kwargs["workspace_id"], owner=self.request.user
+        )
+        return context
+
 
 class ProjectUpdateView(LoginRequiredMixin, UpdateView):
+    model = Project
     template_name = "projects/editar_proyecto.html"
     form_class = ProjectForm
+    context_object_name = "proyecto"
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -76,7 +85,7 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
         )
         return queryset.filter(workspace=workspace)
 
-    def succes_url(self):
+    def get_success_url(self):
         return reverse_lazy(
             "listar_proyectos", kwargs={"workspace_id": self.kwargs["workspace_id"]}
         )
@@ -85,6 +94,7 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
 class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = "projects/eliminar_proyecto.html"
+    context_object_name = "proyecto"
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -93,7 +103,7 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
         )
         return queryset.filter(workspace=workspace)
 
-    def succes_url(self):
+    def get_success_url(self):
         return reverse_lazy(
             "listar_proyectos", kwargs={"workspace_id": self.kwargs["workspace_id"]}
         )
