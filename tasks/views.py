@@ -19,7 +19,7 @@ class TaskListView(LoginRequiredMixin, ListView):
         project = get_object_or_404(
             Project, id=self.kwargs["proyecto_id"], workspace__owner=self.request.user
         )
-        busqueda = self.request.GET.get("busqueda", "")
+        busqueda = self.request.GET.get("busqueda", "").strip()
         if busqueda:
             queryset = queryset.filter(name__icontains=busqueda)
         return queryset.filter(project=project)

@@ -13,7 +13,7 @@ urlpatterns = [
         name="listar_proyectos",
     ),
     path(
-        "workspaces/crear/<int:workspace_id>/",
+        "workspaces/<int:workspace_id>/crear/",
         ProjectCreateView.as_view(),
         name="crear_proyecto",
     ),

@@ -14,7 +14,7 @@ class WorkspaceListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(owner=self.request.user)
-        busqueda = self.request.GET.get("busqueda", "")
+        busqueda = self.request.GET.get("busqueda", "").strip()
         if busqueda:
             queryset = queryset.filter(name__icontains=busqueda)
         return queryset

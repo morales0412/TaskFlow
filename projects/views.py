@@ -25,7 +25,7 @@ class ProjectListView(LoginRequiredMixin, ListView):
         busqueda = self.request.GET.get("busqueda", "")
 
         if busqueda:
-            queryset = queryset.filter(name__icontains=busqueda)
+            queryset = queryset.filter(name__icontains=busqueda).strip()
         return queryset
 
     def get_context_data(self, **kwargs):
