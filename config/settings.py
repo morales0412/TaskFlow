@@ -133,5 +133,5 @@ STATIC_URL = "static/"
 
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "listar_workspaces"
-LOGOUT_REDIRECT_URL = "login"
+LOGOUT_REDIRECT_URL = "home"
 AUTH_USER_MODEL = "accounts.User"
