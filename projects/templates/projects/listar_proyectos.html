@@ -12,7 +12,7 @@
     <h1> Lista de Proyectos </h1>
     <ul>
         {% for proyecto in proyectos %}
-            <li> {{ proyecto.name }} - <a href="{% url 'editar_proyecto' workspace_id=workspace.id pk=proyecto.id %}"> Editar </a>
+            <li> {{ proyecto.name }} -<a href="{% url 'listar_tareas' proyecto_id=proyecto.id %}"> Tareas </a> - <a href="{% url 'editar_proyecto' workspace_id=workspace.id pk=proyecto.id %}"> Editar </a>
                 - <a href="{% url 'eliminar_proyecto' workspace_id=workspace.id pk=proyecto.id %}"> Eliminar </a>
             </li>
         {% empty %}

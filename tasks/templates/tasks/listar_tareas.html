@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Listar Tareas {% endblock %}
+
+{%block content%}
+    <form method="GET">
+        <input type="text" name="busqueda" placeholder="Buscar tarea" >
+        <button type="submit"> Buscar </button>
+    </form>
+    <a href="{% url 'crear_tarea' proyecto_id=proyecto.id %}"> Crear Tarea </a>
+    <h1> Lista de Tareas </h1>
+    <ul>
+        {% for tarea in tareas %}
+            <li> {{ tarea.nombre }} - <a href="{% url 'editar_tarea' proyecto_id=proyecto.id pk=tarea.id %}"> Editar </a>
+                - <a href="{% url 'eliminar_tarea ' proyect_id=proyecto.id  pk=tarea.id %}"> Eliminar </a> </li>
+        {% empty  %}
+                <li> No hay tareas disponibles. </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
