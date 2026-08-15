@@ -4,11 +4,11 @@
 {% block title %} Eliminar Tarea {% endblock %}
 
 {% block content %}
-    <h1> Eliminar tarea {{ tarea.nombre }} </h1>
+    <h1> Eliminar tarea {{ tarea.name }} </h1>
     <form = method="POST">
         {% csrf_token %}
-        <p> ¿Está seguro que desea eliminar la tarea {{ tarea.nombre }}? </p>
+        <p> ¿Está seguro que desea eliminar la tarea {{ tarea.name }}? </p>
         <button type="submit"> Eliminar </button>
     </form>
-    <a href="{% url 'listar_tareas' proyecto_id=proyecto.id %}"> Cancelar </a>
+    <a href="{% url 'listar_tareas' proyecto_id=tarea.project_id %}"> Cancelar </a>
 {% endblock %}

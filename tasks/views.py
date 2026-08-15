@@ -70,7 +70,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
         )
         return queryset.filter(project=project)
 
-    def success_url(self):
+    def get_success_url(self):
         return reverse_lazy(
             "listar_tareas", kwargs={"proyecto_id": self.kwargs["proyecto_id"]}
         )

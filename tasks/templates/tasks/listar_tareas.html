@@ -11,8 +11,8 @@
     <h1> Lista de Tareas </h1>
     <ul>
         {% for tarea in tareas %}
-            <li> {{ tarea.nombre }} - <a href="{% url 'editar_tarea' proyecto_id=proyecto.id pk=tarea.id %}"> Editar </a>
-                - <a href="{% url 'eliminar_tarea ' proyect_id=proyecto.id  pk=tarea.id %}"> Eliminar </a> </li>
+            <li> {{ tarea.name }} - <a href="{% url 'editar_tarea' proyecto_id=proyecto.id pk=tarea.id %}"> Editar </a>
+                - <a href="{% url 'eliminar_tarea' proyecto_id=proyecto.id  pk=tarea.id %}"> Eliminar </a> </li>
         {% empty  %}
                 <li> No hay tareas disponibles. </li>
         {% endfor %}
