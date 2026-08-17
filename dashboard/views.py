@@ -13,6 +13,18 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         usuario = self.request.user
+        total_workspaces = Workspace.objects.filter(owner=usuario).count()
+        total_projects = Project.objects.filter(workspace__owner=usuario).count()
+        total_tareas = Task.objects.filter(project__workspace__owner=usuario).count()
+        tareas = Task.objects.filter(project__workspace__owner=usuario)
+        estados = (
+            Task.objects.filter(project__workspace__owner=usuario)
+            .values("status")
+            .annotate(cantidad=Count("status"))
+        )
+        estado = self.request.GET.get("estado", "")
+        if estado:
+            tareas = tareas.filter(status=estado)
 
 
 # Create your views here.
