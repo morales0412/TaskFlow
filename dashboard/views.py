@@ -25,6 +25,12 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         estado = self.request.GET.get("estado", "")
         if estado:
             tareas = tareas.filter(status=estado)
+        context["total_workspaces"] = total_workspaces
+        context["total_projects"] = total_projects
+        context["total_tareas"] = total_tareas
+        context["tareas"] = tareas
+        context["estados"] = estados
+        return context
 
 
 # Create your views here.

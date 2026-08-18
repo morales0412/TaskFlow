@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <p>Total Workspaces: {{ total_workspaces }}</p>
+    <p>Total Projects: {{ total_projects }}</p>
+    <p>Total Tareas: {{ total_tareas }}</p>
+    <form method="GET">
+        <select name="estado">
+            <option value=""> Todas </option>
+            <option value="PENDING"> Pendiente </option>
+            <option value="IN_PROGRESS"> En progreso </option>
+            <option value="COMPLETED"> Completada </option>
+        </select>
+        <button type="submit">Filtrar</button>
+    </form>
+    <h2>Tareas</h2>
+    <ul>
+        {% for tarea in tareas %}
+            <li>{{ tarea.name }} - {{ tarea.status }}</li>
+        {% empty %}
+            <li>No hay tareas</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Estados</h3>
+    <ul>
+        {% for estado in estados %}
+            <li>{{ estado }}</li>
+        {% empty %}
+            <li>No hay estados</li>
+        {% endfor %}
+
+</body>
+</html>
