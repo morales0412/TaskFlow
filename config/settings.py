@@ -17,10 +17,7 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
-print(os.getenv("DB_HOST"))
-print(os.getenv("DB_NAME"))
-print(os.getenv("DB_USER"))
-print(os.getenv("DB_PORT"))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -47,6 +44,7 @@ INSTALLED_APPS = [
     "workspaces",
     "projects",
     "tasks",
+    "dashboard",
 ]
 
 MIDDLEWARE = [
@@ -132,6 +130,6 @@ STATIC_URL = "static/"
 
 
 LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "listar_workspaces"
+LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "home"
 AUTH_USER_MODEL = "accounts.User"

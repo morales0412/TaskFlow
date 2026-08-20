@@ -22,19 +22,20 @@
     <h2>Tareas</h2>
     <ul>
         {% for tarea in tareas %}
-            <li>{{ tarea.name }} - {{ tarea.status }}</li>
+            <li>{{ tarea.name }} - {{ tarea.status }} <a href="{% url 'listar_tareas' proyecto_id=tarea.project.id %}">Ver</a></li>
         {% empty %}
             <li>No hay tareas</li>
         {% endfor %}
     </ul>
 
-    <h3>Estados</h3>
+    <h3>Estados tareas </h3>
     <ul>
         {% for estado in estados %}
-            <li>{{ estado }}</li>
+            <li>{{ estado.status }} - {{ estado.cantidad }}</li>
         {% empty %}
             <li>No hay estados</li>
         {% endfor %}
+    </ul>
 
 </body>
 </html>

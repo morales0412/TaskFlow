@@ -22,10 +22,10 @@ class ProjectListView(LoginRequiredMixin, ListView):
         )
         # Como workspace es un objeto relacionado mediante una ForeignKey, Django puede utilizar su PK para realizar la consulta.
         queryset = queryset.filter(workspace=workspace)
-        busqueda = self.request.GET.get("busqueda", "")
+        busqueda = self.request.GET.get("busqueda", "").strip()
 
         if busqueda:
-            queryset = queryset.filter(name__icontains=busqueda).strip()
+            queryset = queryset.filter(name__icontains=busqueda)
         return queryset
 
     def get_context_data(self, **kwargs):

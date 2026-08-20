@@ -23,7 +23,7 @@ urlpatterns = [
         name="editar_proyecto",
     ),
     path(
-        "wokspaces/<int:workspace_id>/eliminar/<int:pk>/",
+        "workspaces/<int:workspace_id>/eliminar/<int:pk>/",
         ProjectDeleteView.as_view(),
         name="eliminar_proyecto",
     ),
