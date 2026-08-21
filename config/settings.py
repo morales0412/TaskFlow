@@ -26,9 +26,10 @@ load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+# se pone para que el debug sea True o False
+DEBUG = os.getenv("DEBUG", "False") == "True"
+# obtiene los hosts permitidos y los separa por comas, si no se encuentra la variable de entorno, se asigna localhost y 127.0.0.1
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost, 127.0.0.1").split(",")
 
 
 # Application definition
@@ -127,6 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
 LOGIN_URL = "login"
